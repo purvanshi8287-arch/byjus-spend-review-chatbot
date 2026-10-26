@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f4f6f4" />
+  <title>Spend Review | BYJU'S Advisory Prototype</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Spend Review home"><span class="brand-mark">S</span><span>Spend Review</span></a>
+    <div class="top-meta"><span class="local-dot"></span> Local prototype <span class="divider">|</span> Evidence-led decision support</div>
+  </header>
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">BYJU'S · FINANCE & LEADERSHIP</p>
+        <h1>Make the case<br/><em>before the commitment.</em></h1>
+        <p class="hero-lede">A structured pre-commitment review for significant marketing, sponsorship and expansion proposals.</p>
+        <div class="hero-principle"><span>Evidence</span><b>›</b><span>Assumption</span><b>›</b><span>Intuition</span></div>
+      </div>
+      <aside class="hero-note"><div class="note-icon">↗</div><p>Review the evidence, surface what is missing, and prepare a clear brief for the people who decide.</p><strong>Advice only · Human decision required</strong></aside>
+    </section>
+
+    <nav class="tabs" aria-label="Prototype sections">
+      <button class="tab active" data-view="review">Proposal review</button>
+      <button class="tab" data-view="stress">Stress-test lab <span class="tab-count">12</span></button>
+      <button class="tab" data-view="evidence">Evidence guide</button>
+    </nav>
+
+    <section class="view active" id="view-review">
+      <div class="section-heading"><div><p class="eyebrow">PRE-COMMITMENT GATE</p><h2>Review a proposal</h2><p>Share the decision context and evidence available. Unknowns are useful inputs too.</p></div><button class="quiet-btn" id="resetBtn">Clear form</button></div>
+      <div class="privacy-banner"><span class="shield">✳</span><div><strong>Keep this review non-sensitive.</strong><span>Do not enter names, contact details, customer or employee records, confidential projections, credentials or payment information. This prototype runs in your browser and does not send the form to a server.</span></div></div>
+      <div class="workspace">
+        <form class="proposal-form" id="proposalForm">
+          <div class="form-section-title"><span class="step">01</span><div><strong>The proposal</strong><small>What is being considered?</small></div></div>
+          <label>Proposal type <span class="required">Required</span><select id="type" required><option value="">Select one</option><option>Marketing</option><option>Sponsorship</option><option>Expansion / market entry</option></select></label>
+          <label>Proposal name or short description <span class="required">Required</span><input id="description" required maxlength="180" placeholder="e.g., Regional sports sponsorship, 12 months" /></label>
+          <div class="field-row"><label>Proposed spend<input id="spend" inputmode="decimal" placeholder="Amount (optional)" /></label><label>Currency<select id="currency"><option>INR (₹)</option><option>USD ($)</option><option>Other / not stated</option></select></label></div>
+          <label>Time period<input id="period" placeholder="e.g., 12 months; start date if known" /></label>
+          <label>Business objective<textarea id="objective" rows="2" placeholder="What outcome is this intended to support?"></textarea></label>
+
+          <div class="form-section-title section-gap"><span class="step">02</span><div><strong>Expected benefit & basis</strong><small>Separate a forecast from an established fact.</small></div></div>
+          <label>Expected benefit or revenue outcome<textarea id="benefit" rows="2" placeholder="State the estimate, or enter ‘not yet quantified’. Do not enter confidential projections."></textarea></label>
+          <label>Basis for the expected benefit<select id="benefitBasis"><option value="unknown">Not provided / not quantified</option><option value="assumption">Management assumption or estimate</option><option value="limited">Limited or preliminary evidence</option><option value="verified">Approved, verified evidence available</option></select></label>
+          <label>Market, geography and target customer group<input id="market" placeholder="e.g., City / region and broad customer segment" /></label>
+          <label>Demand or customer evidence<textarea id="demand" rows="2" placeholder="Describe the evidence and its status. Do not include identifiable customer information."></textarea></label>
+
+          <div class="form-section-title section-gap"><span class="step">03</span><div><strong>Risk & precedent</strong><small>What else should finance understand?</small></div></div>
+          <label>Relevant historical precedent or comparison<textarea id="precedent" rows="2" placeholder="Approved source or prior commitment, if known. Avoid unsupported benchmarks."></textarea></label>
+          <div class="field-row"><label>Customer trust or regulatory considerations<textarea id="trust" rows="2" placeholder="Known concerns, checks, or not assessed"></textarea></label><label>Key assumptions or open questions<textarea id="assumptions" rows="2" placeholder="What must be true for this proposal to work?"></textarea></label></div>
+          <label>Evidence or source notes<textarea id="sources" rows="2" placeholder="Name the supplied document, section or source. Do not invent evidence IDs or citations."></textarea></label>
+          <div class="form-actions"><button class="primary-btn" type="submit">Generate advisory review <span>→</span></button><span class="form-hint">No automatic approval · No ROI calculation</span></div>
+        </form>
+        <aside class="side-rail"><div class="rail-card"><span class="rail-label">REVIEW FLOW</span><ol><li><i>1</i><span>Capture the proposal</span></li><li><i>2</i><span>Check evidence & status</span></li><li><i>3</i><span>Surface risk and gaps</span></li><li><i>4</i><span>Prepare human review</span></li></ol></div><div class="rail-card soft"><div class="small-icon">◎</div><strong>What this assistant does</strong><p>It organizes the available case and flags what needs verification. It cannot establish profitability from incomplete inputs.</p></div><div class="rail-foot">Project sources: final decision-gate presentation · Session 7 operating instructions · stress-test set.</div></aside>
+      </div>
+      <div id="result" class="result-wrap" aria-live="polite"></div>
+    </section>
+
+    <section class="view" id="view-stress">
+      <div class="section-heading"><div><p class="eyebrow">BOUNDARY CHECKS</p><h2>Stress-test lab</h2><p>Run the 12 prompts from the project stress-test set and inspect the expected safe response pattern.</p></div><span class="test-summary">12 scenarios · No external AI service</span></div>
+      <div class="stress-layout"><div class="test-list" id="testList"></div><article class="test-detail" id="testDetail"><div class="empty-state"><span>↳</span><h3>Choose a scenario</h3><p>Each test checks a specific evidence, privacy, scope or authority boundary.</p></div></article></div>
+      <div class="prototype-note"><strong>Prototype behavior</strong><span>Responses are deterministic and rule-based for demonstration. They are not generated by a language model and do not replace a live, approved evidence retrieval system.</span></div>
+    </section>
+
+    <section class="view" id="view-evidence">
+      <div class="section-heading"><div><p class="eyebrow">SOURCE OF TRUTH</p><h2>Evidence guide</h2><p>What this prototype can responsibly say from the supplied project files.</p></div></div>
+      <a class="web-evidence-link" href="web-evidence-pack.md" target="_blank" rel="noopener"><span><strong>Open the web evidence pack</strong><small>14 public source records · source quality · evidence gaps · proposal checklist</small></span><b>↗</b></a>
+      <div class="evidence-grid">
+        <article class="evidence-card primary-evidence"><span class="source-tag">FINAL DECISION-GATE PRESENTATION · PAGES 2–6</span><h3>Historical context</h3><p>FY22 consolidated filing coverage reports ₹5,014.60 crore revenue from operations, ₹5,298.43 crore total income, ₹13,668.44 crore expenses and ₹8,245.2 crore net loss; FY21 net loss was ₹4,564.38 crore (<a href="https://www.business-standard.com/amp/companies/news/byju-s-losses-swell-to-rs-8-245-2-cr-in-fy22-revenue-jumps-to-rs-5-014-cr-124012300763_1.html" target="_blank" rel="noopener">filing coverage</a>). A secondary filing analysis reports ₹8,029 crore advertising expenditure across FY16–FY22 (<a href="https://inc42.com/web-stories/byjus-spent-inr-8000-cr-on-ads-during-fy16-22/" target="_blank" rel="noopener">Inc42</a>).</p><p class="caveat">The presentation says this supports a governance-gap diagnosis. It does not prove that every individual spending decision caused financial distress. These historical figures are context, not an industry benchmark or a direct forecast for a new proposal.</p></article>
+        <article class="evidence-card"><span class="source-tag">FINAL PRESENTATION · PAGE 4</span><h3>Evidence status at a glance</h3><div class="status-counts"><div><strong>5</strong><span>Verified</span></div><div><strong>5</strong><span>Found / limited</span></div><div><strong>2</strong><span>Open / inaccessible</span></div></div><p class="caveat">These are aggregate counts reported in the presentation. The uploaded materials do not supply a complete item-by-item Evidence Register mapping here, so this app does not assign individual statuses to evidence IDs.</p></article>
+        <article class="evidence-card"><span class="source-tag">APPROVED METHOD</span><h3>The pre-commitment gate</h3><ul><li>Classify the proposal and capture cost, benefit, period, market and rationale.</li><li>Compare with approved historical financial and relevant precedent evidence.</li><li>Check customer demand, trust and regulatory risks where relevant.</li><li>Distinguish facts, observations, inference, hypotheses and unknowns.</li><li>Issue advisory next steps for finance and leadership review.</li></ul></article>
+        <article class="evidence-card boundary-card"><span class="source-tag">HUMAN ACCOUNTABILITY</span><h3>The assistant cannot approve</h3><p>Finance and authorised business leadership own the final decision. The prototype cannot approve, reject, modify or execute a spend; sign or negotiate a contract; perform an audit; or claim access to live internal systems.</p><p class="caveat">If approved evidence is materially insufficient, say so, list what is missing, and keep human review explicit.</p></article>
+      </div>
+      <div class="source-list"><strong>Source files reviewed</strong><span>Purvanshi.26PGDMDFM025.FAB.pdf (same content also supplied as a duplicate PDF) · FAB_Session_7_Filled_BYJUS_Spend_Review_Assistant.docx · BYJU.docx (12 stress tests) · Six segment- Learning team 5.docx</span><span>The separate Final Problem document was not readable in the supplied attachment cache; the final problem definition was available in the presentation and Session 7 guide. Public web references and their limitations are in the web evidence pack above.</span></div>
+    </section>
+  </main>
+  <footer><span>Spend Review · Prototype v1</span><span>Decision support for finance & leadership · Human review required</span></footer>
+  <script src="app.js"></script>
+</body>
+</html>
+
